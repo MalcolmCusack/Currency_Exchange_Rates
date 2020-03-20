@@ -7,7 +7,7 @@ export default class extends Component {
   constructor() {
     super();
     this.state = {
-      rates: [],
+      rates: []
     };
   }
 
@@ -15,15 +15,17 @@ export default class extends Component {
     fetch('https://api.exchangerate-api.com/v4/latest/USD').then(results => {
       return results.json();
     }).then(data => {
-      let rates = Object.keys(data.rates).map((rates) => {
+      let rates = Object.values(data.rates).map((rates) => {
         return(
-          <div key={rates.results}>
-            <li>{rates.rates}</li>
-          </div>
+      //    <div key={data.rates}>
+      //      <li>{data.rates}</li>
+      //    </div>
+      data.rates
         )
       })
-      this.setState({rates: rates});
-      console.log(data.rates);
+      this.setState({rates: data.rates});
+      //console.log(data.rates);
+
     })
 }
 

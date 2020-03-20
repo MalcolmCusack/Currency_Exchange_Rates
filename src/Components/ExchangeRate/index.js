@@ -10,25 +10,25 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 300,
+
   },
 });
-
-
 
 function createData(currency, rate) {
   return { currency, rate };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159),
-  createData('Ice cream sandwich', 237),
-  createData('Eclair', 262),
-  createData('Cupcake', 305),
-  createData('Gingerbread', 356)
-];
+const rows = []
 
-export default function ExchangeTable() {
+export default function({rates}) {
+
+  for (let [key, value] of Object.entries(rates)) {
+    rows.push(createData(key, value));
+  }
+
+  rows.sort(function(a, b) {
+     return b.rate - a.rate;
+   })
 
   const classes = useStyles();
 
@@ -48,7 +48,7 @@ export default function ExchangeTable() {
               <TableCell component="th" scope="row">
                 {row.currency}
               </TableCell>
-              <TableCell align="right">{row.rate}</TableCell>
+              <TableCell align="right">{'$'+row.rate}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -56,19 +56,3 @@ export default function ExchangeTable() {
     </TableContainer>
   );
 }
-
-
-/*
-results => {
-    return results.json()
-  )}.then(data => {
-    let rates = data.results.map((currencyName, rate)) => {
-      return(
-        currencyName = CurrencyName.results,
-        rate = rate.results
-
-      )
-    }
-
-  })
-  */
