@@ -14,6 +14,8 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 function createData(currency, rate) {
   return { currency, rate };
 }
@@ -26,8 +28,10 @@ const rows = [
   createData('Gingerbread', 356)
 ];
 
-export default function SimpleTable() {
+export default function ExchangeTable() {
+
   const classes = useStyles();
+
 
   return (
     <TableContainer component={Paper}>
@@ -52,3 +56,19 @@ export default function SimpleTable() {
     </TableContainer>
   );
 }
+
+
+/*
+results => {
+    return results.json()
+  )}.then(data => {
+    let rates = data.results.map((currencyName, rate)) => {
+      return(
+        currencyName = CurrencyName.results,
+        rate = rate.results
+
+      )
+    }
+
+  })
+  */
