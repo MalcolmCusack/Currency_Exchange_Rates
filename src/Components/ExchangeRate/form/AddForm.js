@@ -18,7 +18,6 @@ export default class extends Component {
     form: {
       currency: "",
       rate: "",
-
     },
   }
 
@@ -29,7 +28,6 @@ export default class extends Component {
   }
 
   handleChange = name => ({target: { value } }) => {
-
     this.setState({
       form: {
         ...this.state.form,
@@ -39,23 +37,14 @@ export default class extends Component {
   }
 
   handleSubmit = () => {
-
-  //  const { newObj } = this.state
-    var key = this.state.form.currency;
-
-    var newObj = {[key]:parseInt(this.state.form.rate) }
-
+    var newObj = {[this.state.form.currency.toUpperCase()]:parseInt(this.state.form.rate) }
     this.props.onCreate(newObj)
-
+    this.state.form.currency = ""
+    this.state.form.rate = ""
+    this.handleToggle()
   }
 
   render() {
-
-    var key = this.state.form.currency;
-    var newObj = {[key]:this.state.form.rate }
-    console.log(this.state.form)
-    //obj[this.state.form.currency] = this.state.form.rate
-    console.log(newObj)
 
     const { open, form: {currency, rate }} = this.state
     return <Fragment>
@@ -82,9 +71,7 @@ export default class extends Component {
                 variant="outlined"
                 value={rate}
                 onChange={this.handleChange("rate")}
-
                 />
-
             </form>
           </DialogContent>
           <DialogActions>

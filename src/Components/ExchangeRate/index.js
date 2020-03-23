@@ -18,10 +18,7 @@ function createData(currency, rate) {
   return { currency, rate };
 }
 
-const rows = []
-
-export default function({rates}) {
-
+function sortData(rates) {
   for (let [key, value] of Object.entries(rates)) {
     rows.push(createData(key, (1 / value).toFixed(6)));
   }
@@ -29,9 +26,15 @@ export default function({rates}) {
   rows.sort(function(a, b) {
      return b.rate - a.rate;
    })
+}
+
+const rows = []
+
+export default function({rates}) {
+
+  sortData(rates)
 
   const classes = useStyles();
-
 
   return (
     <TableContainer component={Paper}>
