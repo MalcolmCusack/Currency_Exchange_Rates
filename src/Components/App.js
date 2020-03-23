@@ -8,6 +8,7 @@ export default class extends Component {
     super();
     this.state = {
       rates: []
+
     };
   }
 
@@ -22,22 +23,45 @@ export default class extends Component {
       //    </div>
       data.rates
         )
-      })
+      });
       this.setState({rates: data.rates});
       //console.log(data.rates);
 
-    })
-}
+    });
+  }
+
+
+  handleFormCreate = newObj => {
+  //  var obj = newObj;
+    //this.setState({rates: newObj})
+    //this.state.rates.push(newObj)
+    //this.setState({rates: newObj})
+    this.setState({rates: newObj})
+    //Object.assign(this.state.rates, newObj)})
+    console.log(newObj)
+    console.log(this.state.rates)
+
+    /*
+    this.setState(({ rates: rates }) => ({
+      rates: [
+        ...rates,
+          newObj
+      ]
+    }))
+    console.log(this.state.rates)*/
+  }
 
   render() {
 
+    console.log(this.state.rates)
+  //  console.log(obj)
 
     return (
 
       <Fragment>
 
-        <Header />
-        <Table rates={this.state.rates}  />
+        <Header onFormCreate={this.handleFormCreate}/>
+        <Table rates={this.state.rates}   />
 
         <Footer/>
 

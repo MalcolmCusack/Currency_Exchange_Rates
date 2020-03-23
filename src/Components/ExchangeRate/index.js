@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
   table: {
-
+      //maxWidth: 800
   },
 });
 
@@ -23,7 +23,7 @@ const rows = []
 export default function({rates}) {
 
   for (let [key, value] of Object.entries(rates)) {
-    rows.push(createData(key, value));
+    rows.push(createData(key, (1 / value).toFixed(6)));
   }
 
   rows.sort(function(a, b) {
@@ -35,11 +35,11 @@ export default function({rates}) {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Currency</TableCell>
-            <TableCell align="right">Exchange Rate in USD</TableCell>
+            <TableCell align="right">Exchange Rate To USD</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
