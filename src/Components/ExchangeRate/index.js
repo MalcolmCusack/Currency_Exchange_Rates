@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,14 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({
-  table: {
-      //maxWidth: 800
-  },
-});
+const useStyles = makeStyles({table: {
+    //maxWidth: 800
+  }});
 
 function createData(currency, rate) {
-  return { currency, rate };
+  return {currency, rate};
 }
 
 function sortData(rates) {
@@ -24,8 +22,8 @@ function sortData(rates) {
   }
 
   rows.sort(function(a, b) {
-     return b.rate - a.rate;
-   })
+    return b.rate - a.rate;
+  })
 }
 
 const rows = []
@@ -36,26 +34,24 @@ export default function({rates}) {
 
   const classes = useStyles();
 
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Currency</TableCell>
-            <TableCell align="right">Exchange Rate To USD</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.currency}>
-              <TableCell component="th" scope="row">
-                {row.currency}
-              </TableCell>
-              <TableCell align="right">{'$'+row.rate}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  return (<TableContainer component={Paper}>
+    <Table className={classes.table}>
+      <TableHead>
+        <TableRow>
+          <TableCell>Currency</TableCell>
+          <TableCell align="right">Exchange Rate To USD</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {
+          rows.map(row => (<TableRow key={row.currency}>
+            <TableCell component="th" scope="row">
+              {row.currency}
+            </TableCell>
+            <TableCell align="right">{'$' + row.rate}</TableCell>
+          </TableRow>))
+        }
+      </TableBody>
+    </Table>
+  </TableContainer>);
 }

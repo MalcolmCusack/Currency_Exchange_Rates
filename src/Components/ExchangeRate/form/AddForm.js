@@ -17,17 +17,19 @@ export default class extends Component {
     open: false,
     form: {
       currency: "",
-      rate: "",
-    },
+      rate: ""
+    }
   }
 
-  handleToggle = () =>{
+  handleToggle = () => {
     this.setState({
       open: !this.state.open
     })
   }
 
-  handleChange = name => ({target: { value } }) => {
+  handleChange = name => ({target: {
+      value
+    }}) => {
     this.setState({
       form: {
         ...this.state.form,
@@ -37,7 +39,9 @@ export default class extends Component {
   }
 
   handleSubmit = () => {
-    var newObj = {[this.state.form.currency.toUpperCase()]:parseInt(this.state.form.rate) }
+    var newObj = {
+      [this.state.form.currency.toUpperCase()]: parseInt(this.state.form.rate)
+    }
     this.props.onCreate(newObj)
     this.state.form.currency = ""
     this.state.form.rate = ""
@@ -46,43 +50,37 @@ export default class extends Component {
 
   render() {
 
-    const { open, form: {currency, rate }} = this.state
+    const {
+      open,
+      form: {
+        currency,
+        rate
+      }
+    } = this.state
     return <Fragment>
-        <Fab color="secondary" aria-label="add" size='medium' onClick={this.handleToggle}>
-          <AddIcon />
-        </Fab>
-        <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Add a New Row</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Add a new Currency and Rate of exchange in USD.
-            </DialogContentText>
-            <form>
-              <TextField
-                id="outlined-basic"
-                label="Currency"
-                variant="outlined"
-                value={currency}
-                onChange={this.handleChange("currency")}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Rate"
-                variant="outlined"
-                value={rate}
-                onChange={this.handleChange("rate")}
-                />
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleToggle} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleSubmit} color="primary">
-              Add
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Fragment>
-    }
+      <Fab color="secondary" aria-label="add" size='medium' onClick={this.handleToggle}>
+        <AddIcon/>
+      </Fab>
+      <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Add a New Row</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Add a new Currency and Rate of exchange in USD.
+          </DialogContentText>
+          <form>
+            <TextField id="outlined-basic" label="Currency" variant="outlined" value={currency} onChange={this.handleChange("currency")}/>
+            <TextField id="outlined-basic" label="Rate" variant="outlined" value={rate} onChange={this.handleChange("rate")}/>
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleToggle} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={this.handleSubmit} color="primary">
+            Add
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Fragment>
   }
+}
