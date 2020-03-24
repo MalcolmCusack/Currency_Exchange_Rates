@@ -8,9 +8,18 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({table: {
-    //maxWidth: 800
-  }});
+const useStyles = makeStyles({
+  table: {
+    maxWidth: 700,
+  },
+  container: {
+    display: 'flex',
+    justifyContent: "center",
+  },
+  title: {
+    fontWeight: 'bold'
+  }
+  });
 
 function createData(currency, rate) {
   return {currency, rate};
@@ -18,7 +27,7 @@ function createData(currency, rate) {
 
 function sortData(rates) {
   for (let [key, value] of Object.entries(rates)) {
-    rows.push(createData(key, (1 / value).toFixed(6)));
+    rows.push(createData(key, (1/ value).toFixed(6)));
   }
 
   rows.sort(function(a, b) {
@@ -34,12 +43,12 @@ export default function({rates}) {
 
   const classes = useStyles();
 
-  return (<TableContainer component={Paper}>
+  return (<TableContainer className={classes.container} component={Paper}>
     <Table className={classes.table}>
       <TableHead>
         <TableRow>
-          <TableCell>Currency</TableCell>
-          <TableCell align="right">Exchange Rate To USD</TableCell>
+          <TableCell><div className={classes.title}>Currency</div></TableCell>
+          <TableCell align="right"><div className={classes.title}>Exchange Rate To USD</div></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

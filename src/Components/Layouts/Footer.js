@@ -15,25 +15,9 @@ const useStyles = makeStyles(theme => ({
 export default function() {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (<div className={classes.root}>
-    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-      Open Menu
-    </Button>
-    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted="keepMounted" open={Boolean(anchorEl)} onClose={handleClose}>
-      <MenuItem onClick={handleClose}>Currencies Table</MenuItem>
-      <MenuItem onClick={handleClose}>
-        <a href="https://github.com/MalcolmCusack">GitHub</a>
-      </MenuItem>
-    </Menu>
-  </div>)
+  return (
+    <div className={classes.root}>
+      Footer
+    </div>
+  )
 }
