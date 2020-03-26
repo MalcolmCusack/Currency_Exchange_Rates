@@ -27,11 +27,11 @@ function createData(currency, rate) {
 
 function sortData(rates) {
   for (let [key, value] of Object.entries(rates)) {
-    rows.push(createData(key, (1/ value).toFixed(6)));
+    rows.push(createData(key, (value).toFixed(2)));
   }
 
   rows.sort(function(a, b) {
-    return b.rate - a.rate;
+    return a.rate - b.rate;
   })
 }
 
@@ -48,7 +48,7 @@ export default function({rates}) {
       <TableHead>
         <TableRow>
           <TableCell><div className={classes.title}>Currency</div></TableCell>
-          <TableCell align="right"><div className={classes.title}>Exchange Rate To USD</div></TableCell>
+          <TableCell align="right"><div className={classes.title}>Exchange Rate From USD</div></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

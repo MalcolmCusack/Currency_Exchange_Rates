@@ -31,7 +31,8 @@ export default class extends Component {
   }
 
   handleFormCreate = newObj => {
-    this.setState({rates: newObj})
+
+    this.setState({rates: {...this.state.rates ,...newObj}})
   }
 
   render() {

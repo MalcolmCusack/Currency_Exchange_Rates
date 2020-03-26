@@ -18,7 +18,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TableChartIcon from '@material-ui/icons/TableChart';
-import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
 
@@ -109,7 +108,7 @@ export default({onFormCreate}) => {
         <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start" className={clsx(classes.menuButton, open && classes.hide)}>
           <MenuIcon/>
         </IconButton>
-        <Typography variant="h6" noWrap="noWrap">
+        <Typography variant="h6" noWrap={true}>
           USD Exchange Rates
         </Typography>
         <AddForm className={classes.formButton} onCreate={onFormCreate}/>
@@ -130,13 +129,11 @@ export default({onFormCreate}) => {
       <Divider/>
       <List>
         {
-          ['Table', 'Github'].map((text, index) => (<ListItem button="button" key={text}>
+          ['Table', 'Github'].map((text, index) => (<ListItem button={true} key={text} onClick = {() => {window.location='https://github.com/MalcolmCusack'}}>
             <ListItemIcon>{
                 index % 2 === 0
                   ? <TableChartIcon/>
-                  : <Link href='https://github.com/MalcolmCusack'>
-                      <GitHubIcon/>
-                    </Link>
+                  : <GitHubIcon/>
               }
             </ListItemIcon>
             <ListItemText primary={text}/>

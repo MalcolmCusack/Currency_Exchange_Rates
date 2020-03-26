@@ -6,8 +6,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -40,7 +38,7 @@ export default class extends Component {
 
   handleSubmit = () => {
     var newObj = {
-      [this.state.form.currency.toUpperCase()]: parseInt(this.state.form.rate)
+      [this.state.form.currency.toUpperCase()]: parseFloat(this.state.form.rate)
     }
     this.props.onCreate(newObj)
     this.state.form.currency = ""
@@ -65,7 +63,7 @@ export default class extends Component {
         <DialogTitle id="form-dialog-title">Add a New Row</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Add a new Currency and Rate of exchange in USD.
+            Add a new Currency and Rate of Exchange to USD.
           </DialogContentText>
           <form>
             <TextField id="outlined-basic" label="Currency" variant="outlined" value={currency} onChange={this.handleChange("currency")}/>
